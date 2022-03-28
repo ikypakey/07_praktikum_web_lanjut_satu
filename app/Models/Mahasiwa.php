@@ -21,9 +21,9 @@ class Mahasiwa extends Model //Definisi Model
      */
 
     protected $fillable = [
-    'Nim',
-    'Nama',
-    'Kelas',
-    'Jurusan',
+    'nim',
+    'nama',
+    'kelas',
+    'jurusan',
     ];
 };
