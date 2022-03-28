@@ -66,10 +66,10 @@ class MahasiwaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Nim)
+    public function show(Mahasiwa $mahasiswa)
     {
         //menampilkan detail data dengan menemukan/berdasarkan Nim Mahasiswa
-        $Mahasiswa = Mahasiwa::find($Nim);
+        $Mahasiswa = $mahasiswa;
         return view('mahasiswa.detail', compact('Mahasiswa'));
     }
 
@@ -79,10 +79,10 @@ class MahasiwaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($Nim)
+    public function edit(Mahasiwa $mahasiswa)
     {
         //menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
-        $Mahasiswa = DB::table('mahasiswa')->where('nim', $Nim)->first();;
+         $Mahasiswa = $mahasiswa;
         return view('mahasiswa.edit', compact('Mahasiswa'));
     }
 
@@ -93,17 +93,19 @@ class MahasiwaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $Nim)
+    public function update(Request $request, Mahasiwa $mahasiswa)
     {
         //melakukan validasi data
-        $request->validate([
+    $data= $request->validate([
         'nim' => 'required',
         'nama' => 'required',
         'kelas' => 'required',
         'jurusan' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-        Mahasiwa::find($Nim)->update($request->all());
+        //memanggil nama kolom dalam model mahasiswa yang sesuai dengan id mahasiswa yg di req
+        Mahasiwa::where('id_mahasiswa', $mahasiswa->id_mahasiswa)->update($data);
+
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')
             ->with('success', 'Mahasiswa Berhasil Diupdate');
@@ -115,10 +117,10 @@ class MahasiwaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($Nim)
+    public function destroy(Mahasiwa $mahasiswa)
     {
         //fungsi eloquent untuk menghapus data
-        Mahasiwa::find($Nim)->delete();
+        Mahasiwa::where('id_mahasiswa',$mahasiswa->id_mahasiswa)->delete();
         return redirect()->route('mahasiswa.index')
             -> with('success', 'Mahasiswa Berhasil Dihapus');  
     }

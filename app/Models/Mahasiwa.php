@@ -26,4 +26,9 @@ class Mahasiwa extends Model //Definisi Model
     'kelas',
     'jurusan',
     ];
+    // id akan ditimpa oleh nim
+    public function getRouteKeyName()
+    {
+        return 'nim';
+    }
 };
