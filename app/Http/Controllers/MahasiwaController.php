@@ -21,7 +21,7 @@ class MahasiwaController extends Controller
        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
 
         // Mengambil semua isi tabel 
-        $posts = Mahasiwa::orderBy('Nim', 'desc')->paginate(6);      
+        $posts = Mahasiwa::orderBy('nim', 'desc')->paginate(6);      
         return view('mahasiswa.index', compact('mahasiswa'))-> with('i', (request()
         ->input('page', 1) - 1) * 5); 
 
@@ -47,11 +47,12 @@ class MahasiwaController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-        'Nim' => 'required',
-        'Nama' => 'required',
-        'Kelas' => 'required',
-        'Jurusan' => 'required',
+            'nim' => 'required',
+            'nama' => 'required',
+            'kelas' => 'required',
+            'jurusan' => 'required',
         ]);
+
         //fungsi eloquent untuk menambah data
         Mahasiwa::create($request->all());
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -96,10 +97,10 @@ class MahasiwaController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-        'Nim' => 'required',
-        'Nama' => 'required',
-        'Kelas' => 'required',
-        'Jurusan' => 'required',
+        'nim' => 'required',
+        'nama' => 'required',
+        'kelas' => 'required',
+        'jurusan' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         Mahasiwa::find($Nim)->update($request->all());
