@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MahasiwaController;
 use Illuminate\Http\Request;
 
 /*
@@ -15,4 +15,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('mahasiswa', MahasiwaController::class);
+Route::resource('/mahasiswa', MahasiwaController::class);
