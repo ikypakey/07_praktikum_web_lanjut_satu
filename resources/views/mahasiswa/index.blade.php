@@ -47,4 +47,7 @@
     </tr>
     @endforeach
 </table>
+<div class="d-flex justify-content-center">
+    {{ $post -> links() }}
+</div>
 @endsection
