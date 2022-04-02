@@ -25,6 +25,9 @@ class Mahasiwa extends Model //Definisi Model
     'nama',
     'kelas',
     'jurusan',
+    'email',
+    'alamat',
+    'tanggal_lahir',
     ];
     
 };
