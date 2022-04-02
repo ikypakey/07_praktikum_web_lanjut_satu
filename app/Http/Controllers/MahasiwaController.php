@@ -45,12 +45,15 @@ class MahasiwaController extends Controller
      */
     public function store(Request $request)
     {
-        //melakukan validasi data
+        //melakukan validasi data, fungsi untuk memanggil file create.blade untuk pemrosesan
         $request->validate([
             'nim' => 'required',
             'nama' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
+            'email' => 'required',
+            'alamat' => 'required',
+            'tanggal_lahir' => 'required',
         ]);
 
         //fungsi eloquent untuk menambah data
@@ -95,12 +98,15 @@ class MahasiwaController extends Controller
      */
     public function update(Request $request, Mahasiwa $mahasiswa)
     {
-        //melakukan validasi data
+        //melakukan validasi data fungsi untuk memanggil file edit.blade untuk pemrosesan
     $data= $request->validate([
         'nim' => 'required',
         'nama' => 'required',
         'kelas' => 'required',
         'jurusan' => 'required',
+        'email' => 'required',
+        'alamat' => 'required',
+        'tanggal_lahir' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         //memanggil nama kolom dalam model mahasiswa yang sesuai dengan id mahasiswa yg di req
