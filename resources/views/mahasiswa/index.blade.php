@@ -10,6 +10,20 @@
         </div>
     </div>
 </div>
+
+<!-- add search fiture -->
+<div class="row justify-content-start">
+            <div class="col-md-6">
+                <form action="/mahasiswa">
+                    <div class="input-group mb-3 mt-3">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Mahasiswa" name="search"
+                            value="{{ request('search') }}">
+                        <button class="btn btn-info" type="submit" id="button-addon2"><img
+                                src="{{ asset('img/search.png') }}" alt="" height="20px">Cari</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
     <p>{{ $message }}</p>
