@@ -21,17 +21,18 @@ class MahasiwaController extends Controller
         //fungsi eloquent menampilkan data menggunakan pagination 
        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
 
-        // Mengambil semua isi tabel      
+        // Mengambil semua isi tabel  
+        // fungsi latest berfungsi untuk menampilkan berdasarkan data terakhir di input    
         $post = Mahasiwa::latest();
+        // search berdasarkan nama atau nim
         if (request('search')) {
-            $post->where('nama', 'like', '%' . request('search') . '%');
+            $post->where('nama', 'like', '%' . request('search') . '%')->orWhere('nim','like','%' . request('search').'%');
         }
 
         //add pagination 
         return view('mahasiswa.index',[
             'mahasiswa' => $mahasiswa,
-            // fungsi latest berfungsi untuk menampilkan berdasarkan data terakhir di input
-            'post' => Mahasiwa::latest() -> paginate(5)
+            'post' => $post -> paginate (5)
         ]);
 
     }
