@@ -17,13 +17,22 @@ class MahasiwaController extends Controller
      */
     public function index()
     {
+        
         //fungsi eloquent menampilkan data menggunakan pagination 
        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
 
-        // Mengambil semua isi tabel 
-        $posts = Mahasiwa::orderBy('nim', 'desc')->paginate(6);      
-        return view('mahasiswa.index', compact('mahasiswa'))-> with('i', (request()
-        ->input('page', 1) - 1) * 5); 
+        // Mengambil semua isi tabel      
+        $post = Mahasiwa::latest();
+        if (request('search')) {
+            $post->where('nama', 'like', '%' . request('search') . '%');
+        }
+
+        //add pagination 
+        return view('mahasiswa.index',[
+            'mahasiswa' => $mahasiswa,
+            // fungsi latest berfungsi untuk menampilkan berdasarkan data terakhir di input
+            'post' => Mahasiwa::latest() -> paginate(5)
+        ]);
 
     }
 
