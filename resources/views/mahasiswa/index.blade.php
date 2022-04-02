@@ -26,7 +26,7 @@
         <th>Tanggal Lahir</th>
         <th width="280px">Action</th>
     </tr>
-    @foreach ($mahasiswa as $mhs)
+    @foreach ($post as $mhs)
     <tr>
         <td>{{ $mhs ->nim }}</td>
         <td>{{ $mhs ->nama }}</td>
