@@ -13,9 +13,10 @@ class CreateNewInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('new_information', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('mahasiswa', function (Blueprint $table) {
+           $table->string('email',35)-> nullable(); // fungsi nullable agar data boleh dibiarkan kosong pada kolom baru
+            $table->string('alamat',25)-> nullable();
+            $table->date('tanggal_lahir')-> nullable();
         });
     }
 
