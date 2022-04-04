@@ -22,6 +22,11 @@ class MahasiwaController extends Controller
        $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
 
         // Mengambil semua isi tabel  
+       /** $post=Mahasiwa::orderBy('nim','desc')->paginate(6);
+          return view('mahasiswas.index', compact('mahasiswas'))->
+        with('i', (request()->input('page', 1) - 1) * 5); 
+        */
+
         // fungsi latest berfungsi untuk menampilkan berdasarkan data terakhir di input    
         $post = Mahasiwa::latest();
         // search berdasarkan nama atau nim
@@ -57,13 +62,13 @@ class MahasiwaController extends Controller
     {
         //melakukan validasi data, fungsi untuk memanggil file create.blade untuk pemrosesan
         $request->validate([
-            'nim' => 'required',
-            'nama' => 'required',
-            'kelas' => 'required',
-            'jurusan' => 'required',
-            'email' => 'required',
-            'alamat' => 'required',
-            'tanggal_lahir' => 'required',
+            'nim' => 'required|digits_between:8,10',
+            'nama' => 'required|string|max:20',
+            'kelas' => 'required|string|max:5',
+            'jurusan' => 'required|string|max:25',
+            'email' => 'required|string',
+            'alamat' => 'required|string',
+            'tanggal_lahir' => 'required|digits_between:8,10',
         ]);
 
         //fungsi eloquent untuk menambah data
