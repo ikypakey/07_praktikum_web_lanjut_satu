@@ -115,13 +115,13 @@ class MahasiwaController extends Controller
     {
         //melakukan validasi data fungsi untuk memanggil file edit.blade untuk pemrosesan
     $data= $request->validate([
-        'nim' => 'required',
-        'nama' => 'required',
-        'kelas' => 'required',
-        'jurusan' => 'required',
-        'email' => 'required',
-        'alamat' => 'required',
-        'tanggal_lahir' => 'required',
+        'nim' => 'required|digits_between:8,10|unique:mahasiswa,nim',
+            'nama' => 'required|string|max:20',
+            'kelas' => 'required|string|max:5',
+            'jurusan' => 'required|string|max:25',
+            'email' => 'required|string',
+            'alamat' => 'required|string',
+            'tanggal_lahir' => 'required|digits_between:8,10',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         //memanggil nama kolom dalam model mahasiswa yang sesuai dengan id mahasiswa yg di req
