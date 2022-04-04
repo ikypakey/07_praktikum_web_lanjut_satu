@@ -62,7 +62,7 @@ class MahasiwaController extends Controller
     {
         //melakukan validasi data, fungsi untuk memanggil file create.blade untuk pemrosesan
         $request->validate([
-            'nim' => 'required|digits_between:8,10',
+            'nim' => 'required|digits_between:8,10|unique:mahasiswa,nim',
             'nama' => 'required|string|max:20',
             'kelas' => 'required|string|max:5',
             'jurusan' => 'required|string|max:25',
