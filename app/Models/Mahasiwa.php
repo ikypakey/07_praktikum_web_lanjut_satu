@@ -29,6 +29,9 @@ class Mahasiwa extends Model //Definisi Model
     'kelas',
     'kelas_id',
     'jurusan',
+    'email',
+    'alamat',
+    'tanggal_lahir'
     ];
 
     public function kelas(){
