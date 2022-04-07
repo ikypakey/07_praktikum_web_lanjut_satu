@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mahasiwa;
 use Illuminate\Support\Facades\DB;
+use App\Models\Kelas;
 
 
 
@@ -15,18 +16,12 @@ class MahasiwaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+  
+     public function index()
     {
-        
-        //fungsi eloquent menampilkan data menggunakan pagination 
-       $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
-
-        // Mengambil semua isi tabel  
-       /** $post=Mahasiwa::orderBy('nim','desc')->paginate(6);
-          return view('mahasiswas.index', compact('mahasiswas'))->
-        with('i', (request()->input('page', 1) - 1) * 5); 
-        */
-
+        //yang semulanya Mahasiswa::all menjadi mahasiswa with yang menyatakan relasi
+        $mahasiswa = Mahasiwa::with('kelas')->get();
+    
         // fungsi latest berfungsi untuk menampilkan berdasarkan data terakhir di input    
         $post = Mahasiwa::latest();
         // search berdasarkan nama atau nim
