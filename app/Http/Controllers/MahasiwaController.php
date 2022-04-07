@@ -67,8 +67,24 @@ class MahasiwaController extends Controller
             'tanggal_lahir' => 'required|digits_between:8,10',
         ]);
 
+        $mahasiswa = new Mahasiwa;
+        $mahasiswa->nim=$request->get('nim');
+        $mahasiswa->nama=$request->get('nama');
+        $mahasiswa->jurusan=$request->get('jurusan');
+        $mahasiswa->email=$request->get('email');
+        $mahasiswa->alamat=$request->get('alamat');
+        $mahasiswa->tanggal_lahir=$request->get('tanggal_lahir');
+        $mahasiswa->save();
+        
+        $kelas = new Kelas;
+        $kelas->id=$request->get('Kelas');
+
         //fungsi eloquent untuk menambah data
-        Mahasiwa::create($request->all());
+        $mahasiswa->kelas()->associate($kelas);
+        $mahasiswa->save();
+
+        //Mahasiwa::create($request->all());
+
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')
         ->with('success', 'Mahasiswa Berhasil Ditambahkan');
