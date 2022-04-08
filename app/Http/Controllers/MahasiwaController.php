@@ -64,7 +64,7 @@ class MahasiwaController extends Controller
             'jurusan' => 'required|string|max:25',
             'email' => 'required|string',
             'alamat' => 'required|string',
-            'tanggal_lahir' => 'required|digits_between:8,10',
+            'tanggal_lahir' => 'required',
         ]);
 
         $mahasiswa = new Mahasiwa;
@@ -77,7 +77,7 @@ class MahasiwaController extends Controller
         $mahasiswa->save();
         
         $kelas = new Kelas;
-        $kelas->id=$request->get('Kelas');
+        $kelas->id=$request->get('kelas');
 
         //fungsi eloquent untuk menambah data
         $mahasiswa->kelas()->associate($kelas);
